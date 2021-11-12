@@ -15,6 +15,7 @@
 #define TCADSCLIENTWRAPPER_HPP
 
 
+#include "AdsDevice.h"
 #include "AdsLib.h"
 #include "TcAdsClient.hpp"
 

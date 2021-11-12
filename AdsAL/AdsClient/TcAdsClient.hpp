@@ -29,13 +29,15 @@ namespace AdsClient
 
     class TcAdsClient
     {
+        virtual ~TcAdsClient() = 0;
+        
         virtual void Connect(const string& ipV4, const string& amsNetId, AdsPort port) = 0;
         
         template <typename T>
-        virtual T Read(const string& pathToAdsVariable) = 0;
+        T Read(const string& pathToAdsVariable) {}
         
         template <typename T>
-        virtual void Write(const string& pathToAdsVariable, T value) = 0;
+        void Write(const string& pathToAdsVariable, T value) {}
         
         virtual void RegisterNotification(string& pathToAdsVariable, AdsNotificationType notificationType, NotifyCallback callback, uint32_t userHandle, uint32_t length, uint32_t maxDelay = 0, uint32_t cycleTime = 0);
     };
