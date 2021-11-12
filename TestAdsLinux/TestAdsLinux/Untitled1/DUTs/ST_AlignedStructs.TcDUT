@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <DUT Name="ST_AlignedStructs" Id="{146f4e47-dc0e-4b12-8a10-eb0e6fe93083}">
+    <Declaration><![CDATA[TYPE ST_AlignedStructs :
+STRUCT
+	stAligned1	: ST_Aligned;
+	stAligned2	: ST_Aligned;
+	stAligned3	: ST_Aligned;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

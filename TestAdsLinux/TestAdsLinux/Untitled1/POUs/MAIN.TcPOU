@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="MAIN" Id="{f37b12b3-3b94-4389-b989-0323a722ff36}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	byByte		AT %MB0	: ARRAY[0..1027] OF BYTE;
+	i					: INT;
+	moreBytes			: ARRAY[0..8192] OF BYTE;
+	stInput				: ST_Packed;
+	stOutput			: ST_Packed;
+	stAlignedInput		: ST_Aligned;
+	stAlignedOutput		: ST_Aligned;
+	uAlignedInput		: U_AlignedStructs;
+	uAlignedOutput		: U_AlignedStructs;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[FOR i := 4 TO 1027 BY 1 DO
+	byByte[i] := byByte[i] + 1;
+END_FOR
+stOutput := stInput;
+stAlignedOutput := stAlignedInput;
+uAlignedOutput.aAlignedStructs := uAlignedInput.aAlignedStructs;]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="2" Count="0" />
+      <LineId Id="9" Count="1" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="44" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

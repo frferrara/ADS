@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <DUT Name="ST_Packed" Id="{56c3c6fd-dee1-418b-935f-e903df65f747}">
+    <Declaration><![CDATA[{attribute 'pack_mode' := '1'}
+TYPE ST_Packed :					// 13 bytes
+STRUCT
+	bSwitch	: BOOL		:= FALSE;	// 1 byte
+	sText	: STRING[4]	:= 'abcd';	// 5 bytes
+	nReal	: REAL		:= 5.845;	// 4 bytes
+	nInt	: INT		:= 234;		// 2 bytes
+	nByte	: BYTE		:= 76;		// 1 byte
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
