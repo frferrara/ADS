@@ -4,6 +4,9 @@
 # Netbeans project
 nbproject/
 
+# Compile files
+compile/
+
 # github gh-pages / doxygen
 html/
 
