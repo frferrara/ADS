@@ -33,7 +33,7 @@ namespace AdsClient
     class TcAdsClientWrapper : TcAdsClient
     {
     public:
-        TcAdsClientWrapper();
+        TcAdsClientWrapper(NotifyCallbackFunc callback);
         
         TcAdsClientWrapper(const TcAdsClientWrapper& orig);
         
@@ -47,10 +47,13 @@ namespace AdsClient
         template <typename T>
         void Write(const string& pathToAdsVariable, T value);
         
-        void RegisterNotification(string& pathToAdsVariable, AdsNotificationType notificationType, NotifyCallback callback, uint32_t userHandle, uint32_t length, uint32_t maxDelay = 0, uint32_t cycleTime = 0);
+        void RegisterNotification(string& pathToAdsVariable, AdsNotificationType notificationType, uint32_t userHandle, uint32_t length, uint32_t maxDelay = 0, uint32_t cycleTime = 0);
         
     private:
+        NotifyCallbackFunc callback = 0;
         AdsDevice *route = 0;
+        
+        void NotifyCallback(const AmsAddr* pAddr, const AdsNotificationHeader* pNotification, uint32_t hUser);
     };
     
 }

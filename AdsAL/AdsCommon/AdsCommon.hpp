@@ -30,7 +30,7 @@ namespace AdsCommon
         ValueChanged    = 4
     };
 
-    typedef void (*NotifyCallback)(uint32_t userHandle, uint64_t timeStamp, uint32_t notificationHandle, uint32_t size);
+    typedef void (*NotifyCallbackFunc)(uint32_t userHandle, uint64_t timeStamp, uint32_t notificationHandle, uint32_t size);
 }
 }
 

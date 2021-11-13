@@ -40,7 +40,7 @@ namespace AdsClient
         template <typename T>
         void Write(const string& pathToAdsVariable, T value) {}
         
-        virtual void RegisterNotification(string& pathToAdsVariable, AdsNotificationType notificationType, NotifyCallback callback, uint32_t userHandle, uint32_t length, uint32_t maxDelay = 0, uint32_t cycleTime = 0) = 0;
+        virtual void RegisterNotification(string& pathToAdsVariable, AdsNotificationType notificationType, uint32_t userHandle, uint32_t length, uint32_t maxDelay = 0, uint32_t cycleTime = 0) = 0;
     };
     
 }
