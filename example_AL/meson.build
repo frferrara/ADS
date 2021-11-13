@@ -1,12 +1,24 @@
-project('example_AL', 'cpp',
+project(
+  'example_AL', 'cpp',
   version : '0.1',
-  default_options : ['warning_level=3'])
+  default_options : ['warning_level=3']
+)
 
-incdir = include_directories(['../AdsAL/AdsClient', '../AdsAL/AdsCommon',
-  '../AdsLib', '../AdsLib/standalone'])
+exe_files = files(['example.cpp'])
+lib_files = files(['../AdsAL/AdsClient/TcAdsClientWrapper.cpp'])
 
-exe = executable('example_al', 'example.cpp',
+incdir = include_directories([
+  '../AdsAL/AdsClient',
+  '../AdsAL/AdsCommon'
+])
+
+adslib_dep = subproject('AdsLib').get_variable('adslib_dep')
+
+exe = executable(
+  'example_al', [exe_files, lib_files],
   include_directories: incdir,
-  install : true)
+  dependencies: adslib_dep,
+  install : true
+)
 
 test('basic', exe)

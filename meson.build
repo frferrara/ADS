@@ -38,6 +38,8 @@ inc = include_directories([
   'tools',
 ])
 
+install_headers(inc, subdir: 'adslib')
+
 libs = [
   meson.get_compiler('cpp').find_library('ws2_32', required: false),
   dependency('threads'),
@@ -46,6 +48,7 @@ libs = [
 adslib = static_library('AdsLib',
   [common_files, router_files],
   include_directories: inc,
+  install: true
 )
 
 adslibtest = executable('AdsLibTest',

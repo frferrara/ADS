@@ -13,17 +13,32 @@
 
 #include <cstdio>
 #include <cstdlib>
+#include <exception>
 
 #include "TcAdsClientWrapper.hpp"
 
 
 using namespace std;
+using namespace AdsAL::AdsClient;
 
 /*
  * 
  */
 int main()
 {
+    TcAdsClientWrapper *adsClient = 0;
+    
+    try
+    {
+        adsClient = new TcAdsClientWrapper();
+    }
+    catch (exception &e)
+    {
+        // Do something with the exception
+    }
+    
+    if (adsClient) delete adsClient;
+    
     printf("Hello World!\n");
     return 0;
 }

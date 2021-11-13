@@ -17,6 +17,8 @@
 
 #include "AdsDevice.h"
 #include "AdsLib.h"
+#include "AdsNotificationOOI.h"
+
 #include "TcAdsClient.hpp"
 
 
@@ -48,7 +50,7 @@ namespace AdsClient
         void RegisterNotification(string& pathToAdsVariable, AdsNotificationType notificationType, NotifyCallback callback, uint32_t userHandle, uint32_t length, uint32_t maxDelay = 0, uint32_t cycleTime = 0);
         
     private:
-        AdsDevice route;
+        AdsDevice *route = 0;
     };
     
 }

@@ -20,13 +20,13 @@ using namespace std;
 using namespace AdsAL::AdsClient;
 
 
-TcAdsClientWrapper::TcAdsClientWrapper() 
+TcAdsClientWrapper::TcAdsClientWrapper()
 {
 }
 
 TcAdsClientWrapper::TcAdsClientWrapper(const TcAdsClientWrapper& orig) 
 {
-    this = orig;
+    this->route = orig.route;
 }
 
 TcAdsClientWrapper::~TcAdsClientWrapper() 
@@ -35,7 +35,8 @@ TcAdsClientWrapper::~TcAdsClientWrapper()
 
 void TcAdsClientWrapper::Connect(const string& ipV4, const string& amsNetId, AdsPort port)
 {
-    route = { ipV4, amsNetId, port };
+    AdsDevice route = { ipV4, amsNetId, port };
+    this->route = &route;
 }
 
 template <typename T>
@@ -54,7 +55,7 @@ void TcAdsClientWrapper::Write(const string& pathToAdsVariable, T value)
     variable = value;
 }
 
-void TcAdsClientWrapper::RegisterNotification(string& pathToAdsVariable, AdsNotificationType notificationType, NotifyCallback callback, uint32_t userHandle, uint32_t length, uint32_t maxDelay = 0, uint32_t cycleTime = 0)
+void TcAdsClientWrapper::RegisterNotification(string& pathToAdsVariable, AdsNotificationType notificationType, NotifyCallback callback, uint32_t userHandle, uint32_t length, uint32_t maxDelay, uint32_t cycleTime)
 {
     AdsNotificationAttrib attributes = {
         length,
@@ -63,5 +64,5 @@ void TcAdsClientWrapper::RegisterNotification(string& pathToAdsVariable, AdsNoti
         {cycleTime}
     };
     
-    AdsNotification notification { route, pathToAdsVariable, attributes, &callback, userHandle };
+    AdsNotification notification { *route, pathToAdsVariable, attributes, (PAdsNotificationFuncExConst)&callback, userHandle };
 }
